@@ -32,8 +32,8 @@ import com.wilson2403.borutoapp.util.Constants.ON_BOARDING_PAGE_COUNT
 @ExperimentalPagerApi
 @Composable
 fun WelcomeScreen(
-    navController: NavHostController
-    //welcomeViewModel: WelcomeViewModel = hiltViewModel()
+    navController: NavHostController,
+    welcomeViewModel: WelcomeViewModel = hiltViewModel()
 ) {
     val pages = listOf(
         OnBoardingPage.First,
@@ -70,7 +70,7 @@ fun WelcomeScreen(
         ) {
             navController.popBackStack()
             navController.navigate(Screen.Home.route)
-            //welcomeViewModel.saveOnBoardingState(completed = true)
+            welcomeViewModel.saveOnBoardingState(completed = true)
         }
     }
 }

@@ -2,19 +2,21 @@ package com.wilson2403.borutoapp.data.repository
 
 import androidx.paging.PagingData
 import com.wilson2403.borutoapp.domain.model.Hero
+import com.wilson2403.borutoapp.domain.repository.DataStoreOperations
 import com.wilson2403.borutoapp.domain.repository.LocalDataSource
+import com.wilson2403.borutoapp.domain.repository.RemoteDataSource
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
 class Repository @Inject constructor(
     private val local: LocalDataSource,
-    //private val remote: RemoteDataSource,
-    //private val dataStore: DataStoreOperations
+    private val remote: RemoteDataSource,
+    private val dataStore: DataStoreOperations
 ) {
 
-//    fun getAllHeroes(): Flow<PagingData<Hero>> {
-//        return remote.getAllHeroes()
-//    }
+    fun getAllHeroes(): Flow<PagingData<Hero>> {
+        return remote.getAllHeroes()
+    }
 //
 //    fun searchHeroes(query: String): Flow<PagingData<Hero>> {
 //        return remote.searchHeroes(query = query)
@@ -24,12 +26,12 @@ class Repository @Inject constructor(
 //        return local.getSelectedHero(heroId = heroId)
 //    }
 //
-//    suspend fun saveOnBoardingState(completed: Boolean) {
-//        dataStore.saveOnBoardingState(completed = completed)
-//    }
-//
-//    fun readOnBoardingState(): Flow<Boolean> {
-//        return dataStore.readOnBoardingState()
-//    }
+    suspend fun saveOnBoardingState(completed: Boolean) {
+        dataStore.saveOnBoardingState(completed = completed)
+    }
+
+    fun readOnBoardingState(): Flow<Boolean> {
+        return dataStore.readOnBoardingState()
+    }
 
 }
